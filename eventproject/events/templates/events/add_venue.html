@@ -1,0 +1,23 @@
+{% extends 'events/base.html' %}
+
+{% block content %}
+
+    <center>
+        {% if user.is_authenticated %}     
+       <h2>Add Venue</h2>
+    </br></br>
+    {% if submitted %}
+        <P>You venue form was submitted succesfully</P>
+    {% else %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="submit" class="btn btn-secondary">
+        </form>
+    {% endif %}
+    {% else %}
+         <h1> Sorry! you must be the memeber of the event site..</h1>
+         <a href="{% url 'login-user' %}">Please login</a>
+    {% endif %}
+    </center>
+{% endblock %}
